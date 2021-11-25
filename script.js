@@ -11,16 +11,41 @@ const carBrands = [
   { brand: "Jeep", model: "wrangler", type: "suv" },
   { brand: "Nissan", model: "frontier", type: "pickup" },
 ];
+let sCar = carBrands.filter(obb => obb.type == 'sedan')
+console.log(sCar)
 
 /* 2.
  * reverseString takes a string
  * and should return the reverse of the string, you cannot use .reverse method
  * e.g., reverseString('cat') => 'tac'
  */
+function reverseString(str){
+  let backward = ""
+  for(i = str.length - 1; i >=0 ;i--){
+    backward += str[i]
+  }
+  console.log(backward)
+}
+reverseString('creape')
 
 // 3.
 // Write a function that takes an array of strings,
 // and returns the longest string in the array
+function largestString(array){
+
+  let currLong = 0;
+  let longest
+   
+  for(i = 0;i < array.length;i++){
+    if(array[i].length > currLong){
+       currLong = array[i].length
+      longest = array[i]
+
+    }
+  }
+  console.log(longest)
+}
+largestString(['hat','gattlengun','moon','crate'])
 
 // 4.
 // Using Reduce,
@@ -36,7 +61,11 @@ let wishlist = [
   { title: "tesla", price: 2000 },
   { title: "tesla", price: 90000 },
 ];
-function shop(arr) {}
+function shop(arr) {
+
+  let totalPrice = arr.reduce((acc,crr) => acc + crr.price,0)
+  console.log(totalPrice)
+}
 console.log(shop(wishlist));
 
 // 5.
@@ -45,12 +74,34 @@ console.log(shop(wishlist));
 //Make sure to detail the steps that make up a recursive algorithm
 // A detailed explanation.
 
+//recusion is a problem that does not stop or solve itself till it reaches its base case 
+
+function countDown(number){
+
+  //display the current number
+  console.log(number)
+
+  //reduce the number value by 1
+  const newNumber = number - 1
+
+  //the is the base case
+  //this will tell the function when to stop
+  if (newNumber > 0){
+
+    //this is calling the function again with a new value each time
+    //untill it is not greater than 0
+    return countDown(newNumber)
+  }
+}
+countDown(5)
 
 //6. OOP has 4 pillars and we learned about each in this phase. 
 //Choose the pillar you are most comfortable with 
 //and explain it in simple terms with an example.
 //Also, if you cannot explain any of them, we have failed as 
 //instructors and you will be banished to the nether realms.
+
+//inheritance is when the child obj takes on the same properties as the parent
 
 
 /*  7.
@@ -63,7 +114,18 @@ console.log(shop(wishlist));
  * then return the new array
  * Be sure to use map()!
  */
-const flipBool = (arr) => {};
+const flipBool = (arr) => {
+
+  let opposite = arr.map(function(arr){
+    if (arr === true){
+     return arr = false;
+    }else if(arr ===false){
+      return arr = true;
+    }
+  })
+  console.log(opposite)
+};
+flipBool([true,true,false,true])
 
 // 8.
 //FEAST OR FAMINE
@@ -73,3 +135,22 @@ const flipBool = (arr) => {};
 // > i.e.:
 // > input => `"great blue heron", "garlic naan"`
 // > output => `"gn"`
+
+function animalFood(animal,food){
+  let firstA = animal.slice(0,1)
+  let lastA = animal.slice(animal.length - 1)
+  let firstF = food.slice(0,1)
+  let lastF = food.slice(food.length-1)
+
+ //console.log(firstA,lastA,firstF,lastF)
+
+  if (firstA === firstF && lastA ===lastF){
+
+  console.log(`${firstA + lastF}`)
+
+  }else{
+    console.log(false)
+  }
+
+}
+animalFood("great blue heron", "garlic naan")
